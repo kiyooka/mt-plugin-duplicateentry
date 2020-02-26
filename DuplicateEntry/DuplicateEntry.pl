@@ -21,7 +21,7 @@ use constant PREFIX_OF_COPY => '(Copy) ';
 
 use vars qw( $MYNAME $VERSION );
 $MYNAME = 'DuplicateEntry';
-$VERSION = '2.11';
+$VERSION = '2.20';
 
 use base qw( MT::Plugin );
 my $plugin = __PACKAGE__->new({
@@ -171,11 +171,11 @@ sub _hdlr_configure {
           unless ( $user->is_superuser ) {
 
               ## adminnistrator
-              my $perm = MT::Permission->load({ author_id => $user->id , blog_id => 0 });
+	      # my $perm = MT::Permission->load({ author_id => $user->id , blog_id => 0 });
 
               ## entry or page post
-              unless ( $perm ) {
-                   $perm = MT::Permission->load({ author_id => $user->id , blog_id => $blog->id })
+	      # unless ( $perm ) {
+                   my $perm = MT::Permission->load({ author_id => $user->id , blog_id => $blog->id })
                        or next;
 
                    if ( $type eq 'entry' ) {
@@ -183,7 +183,7 @@ sub _hdlr_configure {
                    } else {
                        $perm->can_manage_pages or next;
                    }
-              }
+              # }
           }
           push @blogs , { 
               id => $blog->id,

@@ -5,7 +5,7 @@
     <script type="text/javascript" src="<$mt:var name="static_uri"$>js/edit.js?v=<$mt:var name="mt_version_id" escape="url"$>"></script>
 </mt:setvarblock>
 
-<mt:include name="include/header.tmpl">
+<mt:include name="include/chromeless_header.tmpl">
 
 <form method="post" action="<$mt:var name="script_url"$>">
 <input type="hidden" name="__mode" value="duplicate_mode_copy" >
@@ -23,7 +23,7 @@
 <div class="system" style="margin-top:20px;margin-bottom:20px;">
   <h2><__trans phrase="Select the target blog"></h2>
 <select name="blog_id"><TMPL_LOOP NAME=BLOGS>
-  <option value="<TMPL_VAR NAME=ID>"<TMPL_IF NAME=SELECTED> selected="selected"</TMPL_IF>><TMPL_VAR NAME=NAME ESCAPE=HTML></option>
+  <mt:If name="can_list"><option value="<TMPL_VAR NAME=ID>"<TMPL_IF NAME=SELECTED> selected="selected"</TMPL_IF>><TMPL_VAR NAME=NAME ESCAPE=HTML></option></mt:If>
 </TMPL_LOOP></select>
 </div>
 
@@ -56,4 +56,4 @@
 </div>
 </form>
 
-<mt:include name="include/footer.tmpl">
+<mt:include name="include/chromeless_footer.tmpl">
